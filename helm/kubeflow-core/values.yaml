@@ -657,3 +657,20 @@ sparkOperator:
       syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
+
+trainingOperator:
+  enabled: false
+  spec:
+    project: default
+    source:
+      path: apps/training-operator/upstream/overlays/kubeflow
+      repoURL: https://github.com/kubeflow/manifests
+      targetRevision: 776d4f4
+    destination:
+      namespace: argocd
+      name: in-cluster
+    syncPolicy:
+      automated:
+        prune: false
+      syncOptions:
+        - ServerSideApply=true
